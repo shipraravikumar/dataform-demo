@@ -1,0 +1,40 @@
+config { 
+  type: "table" ,
+  schema: "purchase"
+  
+}
+
+WITH Farm AS
+ (SELECT 'cat' as animal, 23 as population, 'mammal' as category
+  UNION ALL SELECT 'duck', 3, 'bird'
+  UNION ALL SELECT 'dog', 2, 'mammal'
+  UNION ALL SELECT 'goose', 1, 'bird'
+  UNION ALL SELECT 'ox', 2, 'mammal'
+  UNION ALL SELECT 'goat', 2, 'mammal'),
+fa as
+(select * from Farm)
+ SELECT animal, population, category, COUNT(*)
+  OVER (
+    ORDER BY population
+    RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING
+  ) AS similar_population
+FROM fa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
