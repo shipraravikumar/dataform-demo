@@ -1,22 +1,26 @@
-config { 
-  type: "table" ,
-  schema: "purchase"
-  
+config {
+    type: "table",
+    schema: "purchase"
+
 }
-with ben as 
-(
-  select Segment, Country, Product,Gross_Sales,Profit,
-concat('group', ntile(4) over (partition by Segment order by Country))
-as group_number
-from sql-practice-391810.purchase.Finance1
-)
-  select Country, Product,Segment, Gross_Sales, Profit,
-last_value(Profit) 
-over (partition by Segment order by Product)
-as most_popular
-from ben
 
-
-
-
- 
+WITH
+  ben AS (
+  SELECT
+    Segment,
+    Country,
+    Product,
+    Gross_Sales,
+    Profit,
+    CONCAT('group', NTILE(4) OVER (PARTITION BY Segment ORDER BY Country)) AS group_number
+  FROM
+    sql-practice-391810.purchase.Finance1 )
+SELECT
+  Country,
+  Product,
+  Segment,
+  Gross_Sales,
+  Profit,
+  LAST_VALUE(Profit) OVER (PARTITION BY Segment ORDER BY Product) AS most_popular
+FROM
+  ben
