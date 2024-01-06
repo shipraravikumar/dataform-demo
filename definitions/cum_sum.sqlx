@@ -1,0 +1,13 @@
+config { 
+  type: "table" ,
+  
+  
+}
+WITH Produce AS
+ (SELECT 'kale' as item, 23 as purchases, 'vegetable' as category
+  UNION ALL SELECT 'banana', 2, 'fruit'
+  UNION ALL SELECT 'cabbage', 9, 'vegetable'
+  UNION ALL SELECT 'apple', 8, 'fruit'
+  UNION ALL SELECT 'leek', 2, 'vegetable'
+  UNION ALL SELECT 'lettuce', 10, 'vegetable')
+SELECT * FROM Produce

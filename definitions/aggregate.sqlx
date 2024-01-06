@@ -1,0 +1,19 @@
+config { 
+  type: "table" ,
+  
+  
+}
+WITH
+  Precipitation AS (
+    SELECT 2009 AS year, 'spring' AS season, 3 AS inches
+    UNION ALL
+    SELECT 2001, 'winter', 4
+    UNION ALL
+    SELECT 2003, 'fall', 1
+    UNION ALL
+    SELECT 2002, 'spring', 4
+    UNION ALL
+    SELECT 2005, 'summer', 1
+  )
+SELECT ANY_VALUE(year HAVING MAX inches) AS any_year_with_max_inches FROM Precipitation
+
