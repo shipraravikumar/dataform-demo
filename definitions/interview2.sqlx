@@ -1,7 +1,7 @@
 config {
     type: "table",
-    schema: "purchase"
-
+    schema: "purchase",
+    
 }
 
 WITH
@@ -16,11 +16,12 @@ WITH
   FROM
     sql-practice-391810.purchase.Finance1 )
 SELECT
-  Country,
+  country,
   Product,
   Segment,
   Gross_Sales,
   Profit,
-  LAST_VALUE(Profit) OVER (PARTITION BY Segment ORDER BY Product) AS most_popular
+  group_number,
+  LAST_VALUE(Profit) OVER (PARTITION BY Segment ORDER BY Profit) AS most_popular
 FROM
   ben
