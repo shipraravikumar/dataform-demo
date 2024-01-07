@@ -9,5 +9,7 @@ WITH Produce AS
   UNION ALL SELECT 'cabbage', 9, 'vegetable'
   UNION ALL SELECT 'apple', 8, 'fruit'
   UNION ALL SELECT 'leek', 2, 'vegetable'
-  UNION ALL SELECT 'lettuce', 10, 'vegetable')
+  UNION ALL SELECT 'lettuce', 10, 'vegetable'
+  UNION ALL SELECT 'apple', 2, 'fruit'
+  )
 SELECT * FROM Produce

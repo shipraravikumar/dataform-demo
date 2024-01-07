@@ -1,10 +1,16 @@
-config { 
-  type: "table" ,
-  
-  
+config {
+    type: "table",
+
 }
-select item, category, purchases,total_purchase, max(total_purchase)
-over(partition by category order by total_purchase
-ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
- as max_purchase
-from ${ref("dep_cumsum")}
+
+SELECT
+  item,
+  category,
+  purchases,
+  total_purchase,
+  MAX(total_purchase) 
+  OVER(PARTITION BY category ORDER BY total_purchase 
+  ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) 
+  AS max_purchase
+FROM
+  ${ref("dep_cumsum")}

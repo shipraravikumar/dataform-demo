@@ -4,7 +4,7 @@ config {
   
 }
 select item, purchases,category, sum(purchases) 
-over (partition by category order by purchases
-  ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
+over ( order by item
+  )
 as total_purchase
 from ${ref("cum_sum")} 
